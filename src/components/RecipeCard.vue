@@ -33,8 +33,8 @@ export default {
 
 <style scoped>
 .recipe-card {
-  background: rgba(0, 0, 150, 0.25); /* tamnoplava prozirna boja */
-  color: white; /* tekst bijeli da bude čitljiv */
+  background-color: rgba(255, 215, 0, 0.2); /* tamnoplava prozirna boja */
+  color: black; /* tekst bijeli da bude čitljiv */
   border-radius: 12px;
 }
 

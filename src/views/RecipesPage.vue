@@ -31,13 +31,13 @@
         <!-- Tabs -->
         <div class="tabs">
           <v-tabs v-model="activeTab" dark color="primary">
-            <v-tab value="all" style="font-weight: 600; font-size: 16px; color: white"
+            <v-tab value="all" style="font-weight: 600; font-size: 16px; color: lightskyblue"
               >Svi recepti</v-tab
             >
-            <v-tab value="local" style="font-weight: 600; font-size: 16px; color: white"
+            <v-tab value="local" style="font-weight: 600; font-size: 16px; color: lightskyblue"
               >Moji recepti</v-tab
             >
-            <v-tab value="api" style="font-weight: 600; font-size: 16px; color: white"
+            <v-tab value="api" style="font-weight: 600; font-size: 16px; color: lightskyblue"
               >API recepti</v-tab
             >
           </v-tabs>
@@ -291,8 +291,7 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80')
-    no-repeat center center fixed;
+  background: url('/public/background.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
