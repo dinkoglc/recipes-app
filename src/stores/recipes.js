@@ -28,7 +28,10 @@ export const useRecipesStore = defineStore('recipes', {
     async fetchLocalRecipes() {
       try {
         const res = await axios.get('http://localhost:3000/recipes')
-        this.localRecipes = res.data || []
+        this.localRecipes = (res.data || []).map((r) => ({
+          ...r,
+          isLocal: true, // 🔥 sad svi backend recepti dobiju flag
+        }))
       } catch (err) {
         console.error('❌ Greška kod dohvaćanja lokalnih recepata:', err)
       }
@@ -44,7 +47,7 @@ export const useRecipesStore = defineStore('recipes', {
     async addRecipe(recipe) {
       try {
         const res = await axios.post('http://localhost:3000/recipes', recipe)
-        this.localRecipes.push(res.data)
+        this.localRecipes.push({ ...res.data, isLocal: true })
         // await this.fetchLocalRecipes() // refresha listu iz backend-a
       } catch (err) {
         console.error('❌ Greška kod dodavanja recepta:', err)

@@ -5,7 +5,7 @@
         v-model="searchQuery"
         label="Search recipes..."
         outlined
-        @input="search"
+        @input="$emit('search', searchQuery)"
       ></v-text-field>
     </v-col>
   </v-row>
@@ -20,13 +20,10 @@ export default {
       searchQuery: '',
     }
   },
-  setup() {
-    const recipesStore = useRecipesStore()
-    return { recipesStore }
-  },
   methods: {
     search() {
-      this.recipesStore.fetchRecipes(this.searchQuery)
+      const recipesStore = useRecipesStore()
+      recipesStore.fetchRecipes(this.searchQuery)
     },
   },
 }
