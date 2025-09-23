@@ -42,42 +42,43 @@
             >
           </v-tabs>
         </div>
+        <div class="pag">
+          <!-- Recipe List per tab -->
+          <v-window v-model="activeTab">
+            <v-window-item value="all">
+              <RecipeList
+                :recipes="paginatedRecipes"
+                @edit="handleEdit"
+                @delete="handleDelete"
+                @view="openView"
+              />
+            </v-window-item>
 
-        <!-- Recipe List per tab -->
-        <v-window v-model="activeTab">
-          <v-window-item value="all">
-            <RecipeList
-              :recipes="paginatedRecipes"
-              @edit="handleEdit"
-              @delete="handleDelete"
-              @view="openView"
-            />
-          </v-window-item>
+            <v-window-item value="local">
+              <RecipeList
+                :recipes="paginatedRecipes"
+                @edit="handleEdit"
+                @delete="handleDelete"
+                @view="openView"
+              />
+            </v-window-item>
 
-          <v-window-item value="local">
-            <RecipeList
-              :recipes="paginatedRecipes"
-              @edit="handleEdit"
-              @delete="handleDelete"
-              @view="openView"
-            />
-          </v-window-item>
-
-          <v-window-item value="api">
-            <RecipeList
-              :recipes="paginatedRecipes"
-              @edit="handleEdit"
-              @delete="handleDelete"
-              @view="openView"
-            />
-          </v-window-item>
-        </v-window>
+            <v-window-item value="api">
+              <RecipeList
+                :recipes="paginatedRecipes"
+                @edit="handleEdit"
+                @delete="handleDelete"
+                @view="openView"
+              />
+            </v-window-item>
+          </v-window>
+        </div>
 
         <!-- Pagination -->
         <v-pagination
           v-model="currentPage"
           :length="totalPages"
-          color="white"
+          color="black"
           style="font-weight: 600"
           class="my-4"
         />
@@ -298,5 +299,9 @@ export default {
 .tabs {
   border-radius: 8px;
   padding: 0 16px;
+  color: black;
+}
+
+.pag {
 }
 </style>
