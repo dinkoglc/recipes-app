@@ -48,6 +48,7 @@
             <v-window-item value="all">
               <RecipeList
                 :recipes="paginatedRecipes"
+                :recipesPerRow="recipesPerRow"
                 @edit="handleEdit"
                 @delete="handleDelete"
                 @view="openView"
@@ -57,6 +58,7 @@
             <v-window-item value="local">
               <RecipeList
                 :recipes="paginatedRecipes"
+                :recipesPerRow="recipesPerRow"
                 @edit="handleEdit"
                 @delete="handleDelete"
                 @view="openView"
@@ -66,6 +68,7 @@
             <v-window-item value="api">
               <RecipeList
                 :recipes="paginatedRecipes"
+                :recipesPerRow="recipesPerRow"
                 @edit="handleEdit"
                 @delete="handleDelete"
                 @view="openView"
@@ -148,7 +151,9 @@ export default {
       editedRecipe: { idMeal: '', strMeal: '', strInstructions: '' },
       newRecipe: { strMeal: '', strInstructions: '', strMealThumb: '' },
       currentPage: 1,
-      itemsPerPage: 6,
+      // itemsPerPage: 6,
+      recipesPerRow: 3, // koliko po redu
+      rowsPerPage: 2, // koliko redova
       viewDialog: false,
       viewedRecipe: null,
       snackbar: false,
@@ -182,6 +187,10 @@ export default {
       }
 
       return base
+    },
+
+    itemsPerPage() {
+      return this.recipesPerRow * this.rowsPerPage
     },
 
     paginatedRecipes() {

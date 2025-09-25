@@ -3,9 +3,7 @@
     <v-col
       v-for="(recipe, index) in recipes"
       :key="sanitizeKey(recipe.idMeal || recipe.id || `recipe-${index}`)"
-      cols="12"
-      sm="6"
-      md="4"
+      :cols="12 / recipesPerRow"
     >
       <RecipeCard
         :recipe="recipe"
@@ -27,6 +25,10 @@ export default {
     recipes: {
       type: Array,
       required: true,
+    },
+    recipesPerRow: {
+      type: Number,
+      default: 3,
     },
   },
   methods: {
