@@ -6,10 +6,8 @@
       <v-container>
         <SearchFilter @search="searchQuery = $event" />
 
-        <!-- Add Recipe Button -->
         <v-btn color="success" class="mb-4" @click="addDialog = true">Add Recipe</v-btn>
 
-        <!-- Add Recipe Dialog -->
         <v-dialog v-model="addDialog" max-width="500">
           <v-card>
             <v-card-title>Add New Recipe</v-card-title>
@@ -28,7 +26,6 @@
           </v-card>
         </v-dialog>
 
-        <!-- Tabs -->
         <div class="tabs">
           <v-tabs v-model="activeTab" dark color="primary">
             <v-tab value="all" style="font-weight: 600; font-size: 16px; color: lightskyblue"
@@ -43,7 +40,6 @@
           </v-tabs>
         </div>
         <div class="pag">
-          <!-- Recipe List per tab -->
           <v-window v-model="activeTab">
             <v-window-item value="all">
               <RecipeList
@@ -77,7 +73,6 @@
           </v-window>
         </div>
 
-        <!-- Pagination -->
         <v-pagination
           v-model="currentPage"
           :length="totalPages"
@@ -86,7 +81,6 @@
           class="my-4"
         />
 
-        <!-- Snackbar -->
         <v-snackbar v-model="snackbar" :color="snackbarColor" timeout="3000" top>
           {{ snackbarMessage }}
           <template #action>
@@ -94,7 +88,6 @@
           </template>
         </v-snackbar>
 
-        <!-- Edit Dialog -->
         <v-dialog v-model="editDialog" max-width="500">
           <v-card>
             <v-card-title>Edit Recipe</v-card-title>
@@ -112,7 +105,6 @@
           </v-card>
         </v-dialog>
 
-        <!-- View Dialog -->
         <v-dialog v-model="viewDialog" max-width="600">
           <v-card>
             <v-card-title>{{ viewedRecipe?.strMeal }}</v-card-title>
@@ -151,9 +143,8 @@ export default {
       editedRecipe: { idMeal: '', strMeal: '', strInstructions: '' },
       newRecipe: { strMeal: '', strInstructions: '', strMealThumb: '' },
       currentPage: 1,
-      // itemsPerPage: 6,
-      recipesPerRow: 3, // koliko po redu
-      rowsPerPage: 2, // koliko redova
+      recipesPerRow: 3,
+      rowsPerPage: 2,
       viewDialog: false,
       viewedRecipe: null,
       snackbar: false,
@@ -176,7 +167,6 @@ export default {
       if (this.activeTab === 'local') base = all.filter((r) => r.isLocal)
       if (this.activeTab === 'api') base = all.filter((r) => !r.isLocal)
 
-      // 🔥 filtriranje po searchQuery
       if (this.searchQuery && this.searchQuery.trim() !== '') {
         const query = this.searchQuery.toLowerCase()
         base = base.filter(
@@ -213,7 +203,6 @@ export default {
   async created() {
     await this.recipesStore.fetchRecipes()
 
-    // 🔥 Sanitizacija ID-eva i URL-ova
     this.recipesStore.apiRecipes = this.recipesStore.apiRecipes.map((r, i) => ({
       ...r,
       idMeal: this.sanitizeKey(r.idMeal || `api-${i}`),

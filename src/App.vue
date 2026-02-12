@@ -4,12 +4,9 @@
   </v-app>
 </template>
 
-<script setup>
-// ništa posebno za sada
-</script>
+<script setup></script>
 
 <style>
-/* globalni stilovi po želji */
 body {
   margin: 0;
   font-family: 'Roboto', sans-serif;

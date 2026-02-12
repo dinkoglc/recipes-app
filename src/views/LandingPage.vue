@@ -40,7 +40,6 @@
 </template>
 
 <script>
-// Helper funkcija za provjeru login-a
 function isLoggedIn() {
   const userStr = localStorage.getItem('loggedInUser')
   return userStr ? JSON.parse(userStr) : null
@@ -60,7 +59,6 @@ export default {
         this.$router.push({ name: 'RecipesPage' })
       } else {
         this.showAlert = true
-        // Sakrij alert nakon 3 sekunde
         setTimeout(() => (this.showAlert = false), 3000)
         this.$router.push({ name: 'LoginPage' })
       }
@@ -81,9 +79,8 @@ export default {
   align-items: center;
 }
 
-/* Overlay za bolju čitljivost H1 i P */
 .text-background {
-  background: rgba(0, 0, 50, 0.5); /* poluprozirni tamnoplavi overlay */
+  background: rgba(0, 0, 50, 0.5);
   color: #fff;
   padding: 20px 30px;
   border-radius: 12px;

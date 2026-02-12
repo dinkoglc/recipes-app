@@ -39,7 +39,6 @@ export default {
           password: this.password,
         })
         alert(res.data.message)
-        // Spremi trenutno logiranog korisnika
         localStorage.setItem('loggedInUser', JSON.stringify(res.data.user))
         console.log(localStorage.getItem('loggedInUser'))
         this.$router.push('/landing')
@@ -60,7 +59,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: auto;
-  background-color: #f5f5f5; /* svijetlo siva pozadina (opcija) */
+  background-color: #f5f5f5;
   padding: 20px;
   margin: auto;
   width: 100px;

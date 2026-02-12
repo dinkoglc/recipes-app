@@ -57,17 +57,14 @@ export default {
         alert(err.response.data.message || 'Signup failed')
       }
 
-      // Za sada samo logiramo podatke
       console.log('Signup podaci:', {
         name: this.name,
         email: this.email,
         password: this.password,
       })
 
-      // Kasnije ovdje ide API poziv za registraciju
       alert('Signup successful')
 
-      // Preusmjeri na login page
       this.$router.push('/landing')
     },
   },
@@ -80,10 +77,9 @@ export default {
   justify-content: center;
   align-items: center;
   height: auto;
-  background-color: #f5f5f5; /* svijetlo siva pozadina (opcija) */
+  background-color: #f5f5f5;
   padding: 20px;
   margin: auto;
-  /* width: 100px; */
   max-width: 800px;
 }
 </style>

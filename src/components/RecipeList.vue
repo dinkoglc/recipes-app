@@ -36,8 +36,6 @@ export default {
       if (!value) return `recipe-${Date.now()}`
 
       const cleaned = String(value)
-        // uklanja razmake i sve znakove koji nisu slova, brojke, - ili _
-        // return String(value)
         .replace(/\s+/g, '-')
         .replace(/[^a-zA-Z0-9-_]/g, '')
 

@@ -22,7 +22,6 @@ export default {
     isLocal: { type: Boolean, default: false },
   },
   computed: {
-    // Siguran ID koji je uvijek string i bez razmaka
     safeId() {
       const id = this.recipe.idMeal || this.recipe.id || 'unknown-id'
       return String(id).replace(/\s+/g, '-')
@@ -33,12 +32,11 @@ export default {
 
 <style scoped>
 .recipe-card {
-  background-color: rgba(255, 215, 0, 0.2); /* tamnoplava prozirna boja */
-  color: black; /* tekst bijeli da bude čitljiv */
+  background-color: rgba(255, 215, 0, 0.2);
+  color: black;
   border-radius: 12px;
 }
 
-/* Opcionalno: naslovi i tekst mogu imati lagani shadow za bolju čitljivost */
 .v-card-title,
 .v-card-text {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);

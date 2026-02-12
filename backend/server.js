@@ -7,10 +7,9 @@ const path = require('path')
 const app = express()
 const PORT = 3000
 
-// !!! ovo mora biti odmah na vrhu, prije ruta
 app.use(
   cors({
-    origin: 'http://localhost:5173', // ili 8080, ovisno gdje ti se vrti frontend
+    origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   }),
@@ -20,12 +19,10 @@ app.use(bodyParser.json())
 
 const RECIPES_FILE = './recipes.json'
 
-// Provjeri postoji li fajl, ako ne, kreiraj prazan array
 if (!fs.existsSync(RECIPES_FILE)) {
   fs.writeFileSync(RECIPES_FILE, '[]')
 }
 
-// Helper funkcije za čitanje i pisanje
 const readRecipes = () => JSON.parse(fs.readFileSync(RECIPES_FILE, 'utf-8'))
 const writeRecipes = (recipes) => fs.writeFileSync(RECIPES_FILE, JSON.stringify(recipes, null, 2))
 
