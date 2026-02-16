@@ -54,12 +54,17 @@ export default {
 
   methods: {
     goToRecipes() {
-      const user = isLoggedIn()
-      if (user && user.email) {
+      const userStr = localStorage.getItem('loggedInUser')
+      const user = userStr ? JSON.parse(userStr) : null
+
+      if (user) {
         this.$router.push({ name: 'RecipesPage' })
       } else {
         this.showAlert = true
-        setTimeout(() => (this.showAlert = false), 3000)
+        setTimeout(() => {
+          this.showAlert = false
+        }, 3000)
+
         this.$router.push({ name: 'LoginPage' })
       }
     },

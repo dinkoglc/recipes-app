@@ -10,8 +10,8 @@ function isLoggedIn() {
 }
 
 const routes = [
-  { path: '/landing', name: 'LandingPage', component: LandingPage },
-  { path: '/', name: 'RecipesPage', component: RecipesPage, meta: { requiresAuth: true } },
+  { path: '/', name: 'LandingPage', component: LandingPage },
+  { path: '/recipes', name: 'RecipesPage', component: RecipesPage, meta: { requiresAuth: true } },
   { path: '/signup', name: 'SignUp', component: SignUpPage },
   { path: '/login', name: 'LoginPage', component: LoginPage },
 ]

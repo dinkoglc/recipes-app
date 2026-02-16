@@ -65,7 +65,7 @@ export default {
 
       alert('Signup successful')
 
-      this.$router.push('/landing')
+      this.$router.push('/')
     },
   },
 }

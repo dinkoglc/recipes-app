@@ -18,32 +18,53 @@ app.use(
 app.use(bodyParser.json())
 
 const RECIPES_FILE = './recipes.json'
+const USERS_FILE = './users.json'
 
 if (!fs.existsSync(RECIPES_FILE)) {
   fs.writeFileSync(RECIPES_FILE, '[]')
 }
 
+if (!fs.existsSync(USERS_FILE)) {
+  fs.writeFileSync(USERS_FILE, '[]')
+}
+
 const readRecipes = () => JSON.parse(fs.readFileSync(RECIPES_FILE, 'utf-8'))
 const writeRecipes = (recipes) => fs.writeFileSync(RECIPES_FILE, JSON.stringify(recipes, null, 2))
 
-app.get('/recipes', (req, res) => {
+const readUsers = () => JSON.parse(fs.readFileSync(USERS_FILE, 'utf-8'))
+
+const writeUsers = (users) => fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2))
+
+app.get('/recipes/:id', (req, res) => {
   const recipes = readRecipes()
-  res.json(recipes)
+  const recipe = recipes.find((r) => r.idMeal === req.params.id)
+
+  if (!recipe) {
+    return res.status(404).json({ message: 'Recipe not found' })
+  }
+
+  res.json(recipe)
 })
 
-let users = []
+
 
 app.post('/signup', (req, res) => {
+  const users = readUsers()
   const { name, email, password } = req.body
+
   if (users.find((u) => u.email === email)) {
     return res.status(400).json({ message: 'User already exists' })
   }
   users.push({ name, email, password })
+  writeUsers(users)
+
   res.status(201).json({ message: 'User created' })
 })
 
 app.post('/login', (req, res) => {
+  const users = readUsers()
   const { email, password } = req.body
+
   const user = users.find((u) => u.email === email && u.password === password)
   if (user) {
     res.json({ message: 'Login successful', user })

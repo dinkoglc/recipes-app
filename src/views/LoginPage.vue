@@ -41,7 +41,7 @@ export default {
         alert(res.data.message)
         localStorage.setItem('loggedInUser', JSON.stringify(res.data.user))
         console.log(localStorage.getItem('loggedInUser'))
-        this.$router.push('/landing')
+        this.$router.push('/')
       } catch (err) {
         alert(err.response.data.message || 'Login failed')
       }

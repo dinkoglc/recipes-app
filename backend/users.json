@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Dinko Galić",
+    "email": "dinko@gmail.com",
+    "password": "12345"
+  },
+  {
+    "name": "korisnik1",
+    "email": "korisnik1@gmail.com",
+    "password": "1234"
+  },
+  {
+    "name": "korisnik2",
+    "email": "korisnik2@gmail.com",
+    "password": "kor123"
+  }
+]
