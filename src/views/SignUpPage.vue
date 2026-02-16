@@ -4,23 +4,39 @@
       <v-col cols="12" sm="10" md="8" lg="6">
         <v-card>
           <v-card-title>Sign Up</v-card-title>
+
           <v-card-text>
             <v-form @submit.prevent="signup" ref="form">
               <v-text-field v-model="name" label="Full Name" required />
+
               <v-text-field v-model="email" label="Email" required />
+
               <v-text-field v-model="password" label="Password" type="password" required />
+
               <v-text-field
                 v-model="confirmPassword"
                 label="Confirm Password"
                 type="password"
                 required
               />
-              <v-btn type="submit" color="primary" class="mt-4" block>Sign Up</v-btn>
+
+              <v-btn type="submit" color="primary" class="mt-4" block @click="$router.push('/')">
+                Sign Up
+              </v-btn>
             </v-form>
+
+            <div class="text-center mt-4">
+              <v-btn variant="text" color="primary" @click="$router.push('/login')">
+                Već imaš račun?
+              </v-btn>
+            </div>
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
+    <v-snackbar v-model="snackbar" :color="snackbarColor" timeout="3000">
+      {{ snackbarText }}
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -34,13 +50,18 @@ export default {
       email: '',
       password: '',
       confirmPassword: '',
+      snackbar: false,
+      snackbarText: '',
+      snackbarColor: 'success',
     }
   },
+
   methods: {
     async signup() {
-      console.log('Login button clicked')
       if (this.password !== this.confirmPassword) {
-        alert('Passwords do not match!')
+        this.snackbarText = 'Passwords do not match!'
+        this.snackbarColor = 'error'
+        this.snackbar = true
         return
       }
 
@@ -51,21 +72,16 @@ export default {
           password: this.password,
         })
 
-        alert(res.data.message)
-        this.$router.push('/landing')
+        this.snackbarText = res.data.message
+        this.snackbarColor = 'success'
+        this.snackbar = true
+
+        this.$router.push('/login')
       } catch (err) {
-        alert(err.response.data.message || 'Signup failed')
+        this.snackbarText = err.response?.data?.message || 'Signup failed'
+        this.snackbarColor = 'error'
+        this.snackbar = true
       }
-
-      console.log('Signup podaci:', {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-      })
-
-      alert('Signup successful')
-
-      this.$router.push('/')
     },
   },
 }

@@ -9,14 +9,19 @@
               <v-text-field v-model="email" label="Email" required />
               <v-text-field v-model="password" label="Password" type="password" required />
               <v-btn type="submit" color="primary" class="mt-4" block>Login</v-btn>
-              <v-btn variant="text" type="submit" @click="$router.push('/signup')">
-                Nemaš račun?
-              </v-btn>
+              <div class="text-center mt-4">
+                <v-btn variant="text" color="primary" @click="$router.push('/signup')">
+                  Nemaš račun?
+                </v-btn>
+              </div>
             </v-form>
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
+    <v-snackbar v-model="snackbar" :color="snackbarColor" timeout="3000">
+      {{ snackbarText }}
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -28,6 +33,9 @@ export default {
     return {
       email: '',
       password: '',
+      snackbar: false,
+      snackbarText: '',
+      snackbarColor: 'success',
     }
   },
   methods: {
@@ -38,12 +46,19 @@ export default {
           email: this.email,
           password: this.password,
         })
-        alert(res.data.message)
+        this.snackbarText = res.data.message
+        this.snackbarColor = 'success'
+        this.snackbar = true
+
         localStorage.setItem('loggedInUser', JSON.stringify(res.data.user))
-        console.log(localStorage.getItem('loggedInUser'))
-        this.$router.push('/')
+
+        setTimeout(() => {
+          this.$router.push('/')
+        }, 2000)
       } catch (err) {
-        alert(err.response.data.message || 'Login failed')
+        this.snackbarText = err.response?.data?.message || 'Login failed'
+        this.snackbarColor = 'error'
+        this.snackbar = true
       }
     },
   },
