@@ -13,5 +13,15 @@
     "name": "korisnik2",
     "email": "korisnik2@gmail.com",
     "password": "1234"
+  },
+  {
+    "name": "Pero Peric",
+    "email": "pero@gmail.com",
+    "password": "pero1"
+  },
+  {
+    "name": "petar petric",
+    "email": "petar@gmail.com",
+    "password": "1234"
   }
 ]

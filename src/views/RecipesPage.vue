@@ -144,7 +144,7 @@ export default {
       newRecipe: { strMeal: '', strInstructions: '', strMealThumb: '' },
       currentPage: 1,
       recipesPerRow: 3,
-      rowsPerPage: 2,
+      rowsPerPage: 3,
       viewDialog: false,
       viewedRecipe: null,
       snackbar: false,

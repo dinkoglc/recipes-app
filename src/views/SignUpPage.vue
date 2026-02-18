@@ -76,7 +76,7 @@ export default {
         this.snackbarColor = 'success'
         this.snackbar = true
 
-        this.$router.push('/login')
+        this.$router.push('/')
       } catch (err) {
         this.snackbarText = err.response?.data?.message || 'Signup failed'
         this.snackbarColor = 'error'
